@@ -1,0 +1,25 @@
+# build output and local settings
+.gradle/
+**/build/
+/build/
+local.properties
+*.log
+__pycache__/
+.claude/
+
+# secrets: signing key and its password never leave this machine
+signing/
+
+# the phone app lives outside this repository
+phone/
+
+# only the signed car APK is published
+apk/*
+!apk/FamilyStory_car_release.apk
+
+# working files of earlier iterations
+outputs/
+sdk-inspect/
+evidence/*
+!evidence/family-tests.txt
+**/_sheet.png

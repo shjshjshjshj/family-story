@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#F8FAFC">
+  <title>Family Story · 함께 짜는 여행</title>
+  <link rel="stylesheet" href="/vendor/leaflet.css">
+  <link rel="stylesheet" href="/phone.css">
+  <script src="/vendor/leaflet.js" defer></script>
+  <script src="/map.js" defer></script>
+  <script src="/phone.js" defer></script>
+</head>
+<body>
+  <header class="vehicle-hide">
+    <a class="brand" href="/phone" aria-label="Family Story 홈"><span class="mark" aria-hidden="true"></span> Family Story</a>
+    <span id="modeBadge" class="pill">가족 여행</span>
+  </header>
+  <main>
+    <section id="join" class="join card" hidden>
+      <p class="eyebrow">COLLABORATIVE TRIP PLANNER</p>
+      <h1>함께 짜는 여행,<br>길 위의 이야기</h1>
+      <p>차량과 같은 여행에 참여해 경로를 함께 짜고, 방문한 장소의 이야기를 들어 보세요.</p>
+      <form id="joinForm">
+        <label for="name">이 기기의 이름</label>
+        <input id="name" name="name" maxlength="20" placeholder="예: 루루의 태블릿" autocomplete="off" required>
+        <label for="invitation">차량 초대 코드</label>
+        <input id="invitation" name="invitation" placeholder="차량에서 복사한 초대 코드" required autocomplete="off" spellcheck="false">
+        <button class="primary" type="submit">우리 여행에 참여하기 <span aria-hidden="true">→</span></button>
+      </form>
+      <ul class="joinnotes small">
+        <li>차량과 같은 개인 Wi-Fi에 연결해 주세요.</li>
+        <li>일정·기록·도슨트는 차량에 보관돼요. 이 페이지는 영구 저장소가 아니에요.</li>
+        <li>장소 검색은 인터넷이 필요해요.</li>
+        <li>차량에서 공유를 종료하면 다시 초대받아야 해요.</li>
+      </ul>
+    </section>
+    <div id="connected" hidden>
+      <p id="connection" class="connection" role="status" aria-live="polite">연결 확인 중</p>
+
+      <section id="routePanel" class="view">
+      <div class="triphead">
+      <div class="tripbar">
+        <div class="tripbar-main">
+          <p class="eyebrow">OUR TRIP</p>
+          <h1 id="tripTitle" tabindex="-1">여행</h1>
+          <p id="tripMeta" class="small"></p>
+        </div>
+        <div class="tripbar-actions">
+          <button id="renameOpen" type="button" class="ghost">제목 바꾸기</button>
+          <button id="newOpen" type="button">새 여행</button>
+        </div>
+      </div>
+      <form id="tripForm" class="card tripform" hidden>
+        <label for="tripTitleInput" id="tripFormLabel">여행 제목</label>
+        <input id="tripTitleInput" maxlength="100" autocomplete="off">
+        <div class="actions">
+          <button id="tripSave" type="submit">저장</button>
+          <button id="tripCancel" type="button" class="ghost">취소</button>
+        </div>
+        <p id="tripFormError" class="small error" role="alert"></p>
+      </form>
+      <details class="tripselect card">
+        <summary>저장된 여행 불러오기</summary>
+        <label for="savedSelect">저장된 여행</label>
+        <div class="selectrow">
+          <select id="savedSelect"></select>
+          <button id="openTrip" type="button" class="outline">불러오기</button>
+        </div>
+        <p class="small">불러와도 지난 기록은 지워지지 않아요.</p>
+      </details>
+      </div>
+
+        <section class="card searchcard">
+          <h2>장소 찾기</h2>
+          <p class="small">담은 곳은 차량 화면에 바로 나와요. 어디로 갈지는 차에서 골라요.</p>
+          <form id="searchForm">
+            <label for="searchQuery">장소 이름</label>
+            <input id="searchQuery" maxlength="120" autocomplete="off" placeholder="예: 첨성대">
+            <button class="searchbtn" type="submit">장소 검색</button>
+          </form>
+          <p id="searchStatus" class="small" role="status" aria-live="polite"></p>
+          <ul id="searchResults" class="results"></ul>
+        </section>
+
+        <section class="card plancard">
+          <div class="sectiontitle">
+            <h2>가고 싶은 곳</h2>
+            <span id="roleBadge" class="pill"></span>
+          </div>
+          <p id="driverNotice" class="statusbanner" hidden></p>
+          <div class="planrow originrow">
+            <span class="rowlabel"><span aria-hidden="true">출</span><span class="sr-only">출발지</span></span>
+            <div class="rowmain">
+              <p id="originName" class="rowtitle">출발지를 정해 주세요</p>
+              <p id="originAddress" class="small"></p>
+            </div>
+          </div>
+          <ol id="stopList" class="stops"></ol>
+          <p id="stopsEmpty" class="empty">아직 담은 곳이 없어요. 위에서 장소를 찾아 담아 보세요.</p>
+          <div class="plan-actions">
+            <button id="startTrip" type="button" class="cta">여행 시작</button>
+            <button id="finishTrip" type="button" class="outline">여행 완료</button>
+          </div>
+          <p id="startHint" class="small"></p>
+          <div id="driverActions" class="driveractions" hidden>
+            <button id="approvePlan" type="button" class="outline">일정 확인</button>
+            <button id="requestNavi" type="button" class="outline" hidden>차량 내비로 요청</button>
+          </div>
+          <p id="approvalText" class="small"></p>
+        </section>
+
+        <div class="map-area">
+          <div class="mapframe">
+            <div id="map" role="application" aria-label="여행 경로 지도. 지도를 누르면 후보 지점을 고릅니다."></div>
+          </div>
+          <p id="mapNote" class="mapnote" role="status" hidden></p>
+          <p class="small maphelp">담은 곳의 위치예요. 지도를 눌러 장소를 담을 수도 있어요.</p>
+          <details class="coords">
+            <summary>좌표 직접 입력 (키보드 사용)</summary>
+            <div class="fieldgrid">
+              <label for="manualName">장소 이름</label>
+              <input id="manualName" maxlength="120" value="지도에서 지정한 장소" autocomplete="off">
+              <label for="manualLat">위도</label>
+              <input id="manualLat" inputmode="decimal" placeholder="예: 35.8347" autocomplete="off">
+              <label for="manualLon">경도</label>
+              <input id="manualLon" inputmode="decimal" placeholder="예: 129.2190" autocomplete="off">
+            </div>
+            <button id="manualPick" type="button" class="outline">이 좌표로 후보 열기</button>
+            <p id="manualError" class="small error" role="alert"></p>
+          </details>
+          <section id="candidate" class="card candidate" hidden aria-labelledby="candidateTitle">
+            <h3 id="candidateTitle">선택한 지점</h3>
+            <p id="candidateCoord" class="small"></p>
+            <label for="candidateName">장소 이름</label>
+            <input id="candidateName" maxlength="120" autocomplete="off">
+            <div class="actions">
+              <button id="pickOrigin" type="button">출발지로 지정</button>
+              <button id="pickStop" type="button" class="primary-inline">목록에 담기</button>
+              <button id="candidateClose" type="button" class="ghost">닫기</button>
+            </div>
+            <p id="candidateHelp" class="small"></p>
+          </section>
+        </div>
+
+        <div class="routebar card">
+          <div>
+            <p class="eyebrow">ROAD PREVIEW</p>
+            <p id="routeSummary" class="routesummary">출발지와 방문지를 정한 뒤 도로 경로를 미리 볼 수 있어요.</p>
+            <p id="routeStatus" class="small" role="status" aria-live="polite"></p>
+          </div>
+          <button id="previewRoute" type="button">경로 미리보기</button>
+        </div>
+        <details id="legsBox" class="legs card" hidden>
+          <summary>구간별 거리와 시간</summary>
+          <ul id="legs"></ul>
+        </details>
+
+        <section class="card proposals" aria-labelledby="proposalTitle">
+          <h2 id="proposalTitle">가족 제안</h2>
+          <ul id="proposalList"></ul>
+          <p id="proposalsEmpty" class="small">대기 중인 제안이 없어요.</p>
+        </section>
+
+        <details class="card history">
+          <summary>일정 변경 내역</summary>
+          <ul id="history"></ul>
+        </details>
+      </section>
+
+      <section id="docentPanel" class="view" hidden>
+        <button id="backToPlanner" type="button" class="ghost">← 경로 플래너로</button>
+        <div id="docentContent">
+          <div class="sectiontitle">
+            <div>
+              <p id="placeTag" class="eyebrow"></p>
+              <h2 id="placeName" tabindex="-1">도슨트</h2>
+            </div>
+          </div>
+          <div id="noDocent" class="card nodocent" hidden>
+            <p>이 장소에는 등록된 해설이 없어요.</p>
+            <p class="small">일정과 지도에는 그대로 남아 있고, 다른 지원 장소를 고르면 이야기를 들을 수 있어요.</p>
+          </div>
+          <div id="docentBody">
+            <div class="segmented" role="group" aria-label="이야기 유형">
+              <button id="kidsMode" type="button" aria-pressed="true">어린이 이야기</button>
+              <button id="adultMode" type="button" aria-pressed="false">어른의 이야기</button>
+            </div>
+            <article class="storybook">
+              <img id="art" alt="">
+              <div class="storycopy">
+                <div id="storyText" aria-live="polite"></div>
+                <div class="pager" id="pager" role="group" aria-label="장면 이동">
+                  <button id="previous" type="button" aria-label="이전 장면">←</button>
+                  <span id="pageNumber" aria-live="polite"></span>
+                  <button id="next" type="button" aria-label="다음 장면">→</button>
+                </div>
+              </div>
+            </article>
+            <details id="docentSource" class="card source">
+              <summary>이 이야기의 바탕</summary>
+              <p>공개 안내를 참고해 새로 쓴 원고와 직접 만든 삽화예요. 관람 정보와 운영 시간은 방문 전에 확인해 주세요.</p>
+              <a id="sourceLink" target="_blank" rel="noopener noreferrer">공식 안내 열기</a>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="recordsPanel" class="view" hidden>
+        <div class="sectiontitle"><h2 id="recordsHeading" tabindex="-1">여행 기록</h2></div>
+        <div id="recordList"></div>
+        <div id="recordDetail" hidden>
+          <button id="recordBack" type="button" class="ghost">← 기록 목록</button>
+          <h2 id="recordTitle"></h2>
+          <p id="recordTimes" class="small"></p>
+          <div class="segmented" id="planToggle" hidden>
+            <button id="planStart" type="button" aria-pressed="true">시작 일정</button>
+            <button id="planEnd" type="button" aria-pressed="false">최종 일정</button>
+          </div>
+          <div class="mapframe recordmapframe">
+            <div id="recordMap" role="application" aria-label="저장된 계획 경로 지도"></div>
+          </div>
+          <p id="recordMapNote" class="small"></p>
+          <ol id="recordStops" class="recordstops"></ol>
+          <p class="small">기록은 계획 경로와 방문 완료 시각만 보관해요. 실제 GPS 이동 궤적은 기록하지 않아요.</p>
+        </div>
+      </section>
+
+      <section id="familyPanel" class="view" hidden>
+        <div class="sectiontitle"><h2 id="familyHeading" tabindex="-1">가족 연결</h2></div>
+        <p id="familyStale" class="stale" hidden>연결이 끊겨 마지막으로 받은 가족 정보예요. 아래 내용은 최신 상태가 아닐 수 있어요.</p>
+        <div class="card familycard">
+          <h3>이 기기</h3>
+          <p id="myDevice"></p>
+          <ul id="permissions" class="permissions"></ul>
+          <p class="small" id="permissionNote"></p>
+        </div>
+        <div class="card familycard">
+          <h3>함께 참여한 기기</h3>
+          <ul id="members" class="members"></ul>
+        </div>
+        <div class="card familycard">
+          <h3>최근 변경</h3>
+          <ul id="familyHistory" class="historylist"></ul>
+        </div>
+        <details class="help card">
+          <summary>연결이 안 될 때</summary>
+          <p>휴대폰과 차량이 같은 개인 Wi-Fi에 있는지, 차량에서 가족 공유가 켜져 있는지 확인해 주세요. 공유가 켜져 있으면 차량에서 내비게이션이 앞에 떠 있어도 연결을 유지해요.</p>
+          <p>연결이 철회되었거나 차량에서 공유 종료가 실행되었다면 차량에서 새 초대를 받아야 해요. 차량에 저장된 일정과 기록은 지워지지 않아요.</p>
+        </details>
+      </section>
+    </div>
+    <p id="message" class="message" role="alert" aria-live="polite"></p>
+  </main>
+  <div id="confirmBackdrop" class="modal-backdrop" hidden>
+    <div id="confirmDialog" class="card modal-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmDesc">
+      <h2 id="confirmTitle">확인</h2>
+      <p id="confirmDesc"></p>
+      <div class="actions">
+        <button id="confirmCancel" type="button" class="outline">취소</button>
+        <button id="confirmOk" type="button" class="primary-inline">계속</button>
+      </div>
+    </div>
+  </div>
+  <nav id="navigation" hidden aria-label="주요 화면">
+    <button id="routeTab" type="button" aria-current="page">경로</button>
+    <button id="docentTab" class="vehicle-hide" type="button">도슨트</button>
+    <button id="recordsTab" type="button">기록</button>
+    <button id="familyTab" class="vehicle-hide" type="button">가족</button>
+  </nav>
+</body>
+</html>

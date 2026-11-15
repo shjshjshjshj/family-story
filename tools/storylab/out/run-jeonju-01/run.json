@@ -1,0 +1,712 @@
+{
+ "id": "run-jeonju-01",
+ "status": "done",
+ "route": [
+  "경기전",
+  "전주한옥마을",
+  "전동성당",
+  "덕진공원"
+ ],
+ "purpose": "auto",
+ "age": "auto",
+ "images": true,
+ "models": {
+  "text": "gemini-4-argon",
+  "image": "gemini-nano-banana-2.1"
+ },
+ "log": [
+  {
+   "t": 0.5,
+   "m": "소개문 가져오기 · 경기전 · 1초"
+  },
+  {
+   "t": 1.1,
+   "m": "소개문 가져오기 · 전주한옥마을 · 1초"
+  },
+  {
+   "t": 1.5,
+   "m": "소개문 가져오기 · 전동성당 · 0초"
+  },
+  {
+   "t": 1.9,
+   "m": "소개문 가져오기 · 덕진공원 · 0초"
+  },
+  {
+   "t": 10.5,
+   "m": "여행 이야기 틀 정하기 · 9초"
+  },
+  {
+   "t": 30.9,
+   "m": "경기전 원고 쓰기 · 20초"
+  },
+  {
+   "t": 44.4,
+   "m": "경기전 배경 'main' 그리기 · 13초"
+  },
+  {
+   "t": 61.1,
+   "m": "경기전 배경 'bamboo' 그리기 · 17초"
+  },
+  {
+   "t": 75.7,
+   "m": "경기전 친구 대롱 그리기 · 15초"
+  },
+  {
+   "t": 92.5,
+   "m": "경기전 소품 4개 그리기 · 16초"
+  },
+  {
+   "t": 114.3,
+   "m": "전동성당 원고 쓰기 · 21초"
+  },
+  {
+   "t": 128.4,
+   "m": "전동성당 배경 'main' 그리기 · 14초"
+  },
+  {
+   "t": 142.2,
+   "m": "전동성당 배경 'closeup' 그리기 · 14초"
+  },
+  {
+   "t": 155.7,
+   "m": "전동성당 친구 비둘 그리기 · 13초"
+  },
+  {
+   "t": 178.3,
+   "m": "전동성당 소품 4개 그리기 · 22초"
+  },
+  {
+   "t": 201.5,
+   "m": "덕진공원 원고 쓰기 · 22초"
+  },
+  {
+   "t": 214.9,
+   "m": "덕진공원 배경 'main' 그리기 · 13초"
+  },
+  {
+   "t": 232.3,
+   "m": "덕진공원 배경 'bridge' 그리기 · 17초"
+  },
+  {
+   "t": 255.5,
+   "m": "덕진공원 친구 연이 그리기 · 23초"
+  },
+  {
+   "t": 270.2,
+   "m": "덕진공원 소품 5개 그리기 · 14초"
+  }
+ ],
+ "notes": [
+  {
+   "where": "전주한옥마을",
+   "m": "관광공사 소개문을 찾지 못해 이 장소는 건너뜀"
+  }
+ ],
+ "trip": {
+  "frame": "collect",
+  "title": "전주 빛깔 조각 모으기",
+  "goal": "{g}가 전주의 아름다운 빛깔 조각 세 개를 모아 무지개 연꽃 등불을 완성한다.",
+  "finale": "덕진공원 연못 위에 세 가지 빛깔 조각이 합쳐진 무지개 연꽃 등불이 환하게 피어난다.",
+  "cast": [
+   {
+    "place": "경기전",
+    "id": "npc1",
+    "name": "대롱",
+    "kind": "대나무 숲 아기 팬더",
+    "look": "A cute, chubby baby panda wearing a tiny blue traditional Korean royal hat and holding a green bamboo leaf.",
+    "gift": "푸른 곤룡포 빛깔 구슬",
+    "gift_look": "a glowing royal blue glass bead"
+   },
+   {
+    "place": "전동성당",
+    "id": "npc2",
+    "name": "비둘",
+    "kind": "종탑 위 하얀 비둘기",
+    "look": "A round, fluffy white dove wearing a red brick-patterned scarf and a tiny golden bell necklace.",
+    "gift": "붉은 벽돌 빛깔 조각",
+    "gift_look": "a sparkling warm red brick-shaped crystal"
+   },
+   {
+    "place": "덕진공원",
+    "id": "npc3",
+    "name": "연이",
+    "kind": "연못 위 분홍 개구리",
+    "look": "A cute, chubby light-green frog wearing a big pink lotus petal hat and holding a dewdrop wand.",
+    "gift": "분홍 연꽃잎 등불 틀",
+    "gift_look": "a soft glowing pink lotus-shaped lantern base"
+   }
+  ]
+ },
+ "places": [
+  {
+   "id": "p1",
+   "name": "경기전",
+   "matched": "전주 경기전",
+   "address": "전북특별자치도 전주시 완산구 태조로 44 (풍남동3가)",
+   "summary": "태조 이성계의 어진을 봉안하고 제사하는 전각인 전주 경기전은 1991년 1월 9일 사적으로 지정되었다. 1410년(태종 11)에 임금은 전주, 경주, 평양에 태조 이성계의 어진을 봉안하고 제사하는 전각을 짓고 어용전(御容殿)이라 하였다.",
+   "adult": [
+    "태조 이성계의 어진을 봉안하고 제사하는 전각인 전주 경기전은 1991년 1월 9일 사적으로 지정되었다. 1410년(태종 11)에 임금은 전주, 경주, 평양에 태조 이성계의 어진을 봉안하고 제사하는 전각을 짓고 어용전(御容殿)이라 하였다.",
+    "조선 왕조의 발상지라 여기는 전주에 건립한 태조 진전으로 경기전이라는 명칭은 세종 때 붙인 이름이다. 건물은 정유재란 때 소실되었던 것을 1614년(광해군 6)에 중건하였다. 보호 면적은 49,590㎡이다. 경기전의 경역은 정전(正殿)과 조경묘(肇慶廟)로 나뉜다.",
+    "정전은 태조 이성계의 어진을 봉안한 곳으로, 정면 3칸, 측면 3칸 규모이다. 지대석(地臺石)과 면석(面石) 및 갑석(甲石)을 갖춘 기단 위에 세운 다포계(多包系) 형식의 맞배집으로, 그 전면 가운데에는 1칸 규모의 기단을 돌출시켜 쌓고 그 위에 첨각(添閣)을 세워 배례청을 시설했다."
+   ],
+   "sourceTitle": "한국관광공사 TourAPI",
+   "npc": {
+    "place": "경기전",
+    "id": "npc1",
+    "name": "대롱",
+    "kind": "대나무 숲 아기 팬더",
+    "look": "A cute, chubby baby panda wearing a tiny blue traditional Korean royal hat and holding a green bamboo leaf.",
+    "gift": "푸른 곤룡포 빛깔 구슬",
+    "gift_look": "a glowing royal blue glass bead"
+   },
+   "assets": {
+    "cuts": [
+     "main",
+     "bamboo"
+    ],
+    "npc": [
+     "wave",
+     "point",
+     "surprise",
+     "cheer"
+    ],
+    "props": [
+     "bead",
+     "lantern",
+     "portrait",
+     "brick"
+    ]
+   },
+   "kids": [
+    {
+     "title": "안녕 경기전",
+     "text": "안녕 나는 {g}야. 전주의 빛깔 조각 세 개를 모아 무지개 연꽃 등불을 만들 거야. 첫 번째 장소는 옛날 임금님의 그림을 모신 경기전이야. 저기 대나무 숲에서 아기 팬더 대롱이가 손을 흔드네.",
+     "activity": "wave",
+     "props": [
+      "lantern"
+     ],
+     "npc": {
+      "id": "npc1",
+      "name": "대나무 숲 아기 팬더 대롱",
+      "pose": "wave"
+     }
+    },
+    {
+     "title": "붉은 홍살문",
+     "text": "경기전에 들어가려면 먼저 키가 큰 홍살문을 지나야 해. 홍살문 너머로 정전으로 향하는 길이 길게 뻗어 있어. 대롱이와 함께 천천히 걸어가 보자.",
+     "activity": "walk",
+     "npc": {
+      "id": "npc1",
+      "name": "대나무 숲 아기 팬더 대롱",
+      "pose": "point"
+     }
+    },
+    {
+     "title": "임금님 그림이 있는 정전",
+     "text": "이 멋진 한옥은 정전이라고 불러. 옛날 조선을 세운 태조 이성계 임금님의 그림인 어진을 모신 곳이야. 앞쪽 가운데에 작은 지붕이 하나 더 나와 있는 특별한 모양이지.",
+     "activity": "point",
+     "props": [
+      "portrait",
+      "brick"
+     ],
+     "npc": {
+      "id": "npc1",
+      "name": "대나무 숲 아기 팬더 대롱",
+      "pose": "surprise"
+     }
+    },
+    {
+     "title": "나무가 가득한 숲",
+     "text": "대롱이가 사는 초록빛 대나무 숲으로 와 봐. 바람이 불면 키 큰 대나무들이 사각사각 노래를 해. 멋지게 자란 소나무 숲과 매화나무도 한옥과 참 잘 어울려.",
+     "activity": "listen",
+     "cut": "bamboo",
+     "npc": {
+      "id": "npc1",
+      "name": "대나무 숲 아기 팬더 대롱",
+      "pose": "wave"
+     }
+    },
+    {
+     "title": "고풍스러운 돌담길",
+     "text": "돌을 차곡차곡 쌓아 만든 돌담길도 걸어 볼까. 이 예쁜 길과 대나무 숲은 텔레비전 드라마에도 자주 나왔대. 주변에서 고운 한복을 입고 걸으면 옛날로 시간 여행을 온 것 같아.",
+     "activity": "photo",
+     "cut": "bamboo"
+    },
+    {
+     "title": "북쪽에 있는 조경묘",
+     "text": "정전 북쪽에는 조경묘라는 곳도 있어. 태조 임금님의 아주 먼 옛날 조상님을 모신 조용한 곳이야. 경기전은 유치원 운동장을 수십 개 합친 것만큼 아주 넓어.",
+     "activity": "think"
+    },
+    {
+     "title": "소중히 지켜요",
+     "text": "경기전은 아주 오래전부터 내려온 소중한 보물이야. 엄마 아빠 손을 꼭 잡고 길을 따라 걸어야 해. 기단이나 돌담에 올라가지 않고 눈으로만 예쁘게 담아 가자.",
+     "activity": "read",
+     "props": [
+      "brick"
+     ],
+     "npc": {
+      "id": "npc1",
+      "name": "대나무 숲 아기 팬더 대롱",
+      "pose": "point"
+     }
+    },
+    {
+     "title": "첫 번째 빛깔 구슬",
+     "text": "대롱이가 우리에게 푸른 곤룡포 빛깔 구슬을 선물로 주었어. 무지개 연꽃 등불을 만들 첫 번째 빛깔 조각을 찾았네. 대롱아 고마워. 이제 두 번째 빛깔 조각이 있는 다음 장소가 우리를 기다리고 있어.",
+     "activity": "cheer",
+     "cut": "bamboo",
+     "props": [
+      "bead",
+      "lantern"
+     ],
+     "npc": {
+      "id": "npc1",
+      "name": "대나무 숲 아기 팬더 대롱",
+      "pose": "cheer"
+     }
+    }
+   ],
+   "journey": {
+    "kidsQuizzes": [
+     {
+      "q": "경기전 정전에는 누구의 그림을 모시고 있을까? 일 번, 태조 이성계 임금님. 이 번, 하늘을 나는 공룡.",
+      "a": "정답은 일 번! 경기전은 조선을 세운 태조 이성계 임금님의 그림인 어진을 모신 곳이야."
+     },
+     {
+      "q": "경기전 안에서 볼 수 있는 숲은 어떤 숲일까? 일 번, 사탕 나무 숲. 이 번, 대나무 숲과 소나무 숲.",
+      "a": "정답은 이 번! 경기전에는 드라마 촬영지로도 유명한 대나무 숲과 오래된 소나무 숲이 있어."
+     },
+     {
+      "q": "경기전이 자리 잡고 있는 마을의 이름은 무엇일까? 일 번, 전주한옥마을. 이 번, 무지개구름마을.",
+      "a": "정답은 일 번! 경기전은 멋진 한옥과 먹거리가 가득한 전주한옥마을 안에 있어."
+     }
+    ],
+    "facts": [
+     "태조 이성계의 어진을 봉안하고 제사하는 전각인 전주 경기전은 1991년 1월 9일 사적으로 지정되었다.",
+     "조선 왕조의 발상지라 여기는 전주에 건립한 태조 진전으로 경기전이라는 명칭은 세종 때 붙인 이름이다.",
+     "정전은 태조 이성계의 어진을 봉안한 곳으로, 정면 3칸, 측면 3칸 규모이다."
+    ],
+    "kidsLookout": "창밖에 고운 한옥 지붕들과 푸른 나무들이 어우러진 돌담이 보이는지 찾아봐.",
+    "kidsRecall": "아기 팬더 대롱이와 함께 임금님의 그림을 모신 정전과 초록빛 대나무 숲을 걸어 보았지?"
+   },
+   "cuts": [
+    {
+     "id": "main",
+     "look": "A wide sunny view of Gyeonggijeon Shrine with traditional Korean hanok buildings, a red Hongsalmun gate, a brick path leading to the main hall Jeongjeon, and lush pine and plum trees."
+    },
+    {
+     "id": "bamboo",
+     "look": "A close view of a dense green bamboo forest and a charming traditional stone wall path inside Gyeonggijeon under soft sunlight."
+    }
+   ],
+   "props": [
+    {
+     "id": "bead",
+     "name": "푸른 곤룡포 빛깔 구슬",
+     "look": "a glowing blue glass marble with traditional royal patterns"
+    },
+    {
+     "id": "lantern",
+     "name": "무지개 연꽃 등불",
+     "look": "an unlit traditional Korean lotus lantern frame"
+    },
+    {
+     "id": "portrait",
+     "name": "어진 두루마리",
+     "look": "a rolled traditional Korean royal scroll painting"
+    },
+    {
+     "id": "brick",
+     "name": "정전 앞 보도 벽돌",
+     "look": "a neat stack of traditional gray clay bricks"
+    }
+   ],
+   "mission": {
+    "question": "정전으로 향하는 길에 서 있는 붉은 홍살문과 길게 이어진 벽돌 길을 눈으로 찾아볼까?",
+    "activity": "point"
+   }
+  },
+  {
+   "id": "p2",
+   "name": "전동성당",
+   "matched": "전주전동성당",
+   "address": "전북특별자치도 전주시 완산구 태조로 51",
+   "summary": "전주 전동성당은 사적으로 조선시대 천주교도의 순교 터에 세워졌다. 이 건물은 천주교 신자들을 사형했던 전라북도 전주시 전동 풍남문 밖에 지어진 성당이다. 조선시대의 전주는 전라감영이 있었으므로 천주교회사에서 전동은 자연히 순교지의 하나가 됐다.",
+   "adult": [
+    "전주 전동성당은 사적으로 조선시대 천주교도의 순교 터에 세워졌다. 이 건물은 천주교 신자들을 사형했던 전라북도 전주시 전동 풍남문 밖에 지어진 성당이다. 조선시대의 전주는 전라감영이 있었으므로 천주교회사에서 전동은 자연히 순교지의 하나가 됐다.",
+    "정조 15년(1791)에 최초의 순교자 윤지충(바오로)과 권상연(야고보), 순조 원년(1801)에 호남 첫 사도 유항검(아우구스티노)과 윤지헌(프란치스코) 등이 이곳에서 박해를 받고 처형됐다.",
+    "신유박해(1801년) 때는 이곳에서 유항검과 유관검 형제가 육시형을, 윤지헌, 김유산, 이우집 등이 교수형을 당했다. 이들의 순교의 뜻을 기리고자 1891년(고종 28)에 프랑스 보두네(Baudenet) 신부가 부지를 매입하고 1908년 성당 건립에 착수해 1914년에 완공했다."
+   ],
+   "sourceTitle": "한국관광공사 TourAPI",
+   "npc": {
+    "place": "전동성당",
+    "id": "npc2",
+    "name": "비둘",
+    "kind": "종탑 위 하얀 비둘기",
+    "look": "A round, fluffy white dove wearing a red brick-patterned scarf and a tiny golden bell necklace.",
+    "gift": "붉은 벽돌 빛깔 조각",
+    "gift_look": "a sparkling warm red brick-shaped crystal"
+   },
+   "assets": {
+    "cuts": [
+     "main",
+     "closeup"
+    ],
+    "npc": [
+     "wave",
+     "point",
+     "surprise",
+     "cheer"
+    ],
+    "props": [
+     "brick",
+     "stone",
+     "camera",
+     "shard"
+    ]
+   },
+   "kids": [
+    {
+     "title": "아름다운 성당에 왔어",
+     "text": "안녕, 나는 {g}야. 경기전에 이어 두 번째로 찾아온 곳은 아주 아름다운 전동성당이야. 저기 높은 곳에서 하얀 비둘기 친구 비둘이가 반갑게 인사하네.",
+     "activity": "wave",
+     "npc": {
+      "id": "npc2",
+      "name": "종탑 위 하얀 비둘기 비둘",
+      "pose": "wave"
+     }
+    },
+    {
+     "title": "알록달록 예쁜 벽돌",
+     "text": "성당을 가까이에서 살펴볼까. 회색 벽돌이랑 붉은색 벽돌을 차곡차곡 쌓아서 지었어. 우리가 가지고 노는 블록 장난감을 높이 쌓아 올린 것 같아.",
+     "activity": "point",
+     "cut": "closeup",
+     "props": [
+      "brick"
+     ],
+     "npc": {
+      "id": "npc2",
+      "name": "종탑 위 하얀 비둘기 비둘",
+      "pose": "point"
+     }
+    },
+    {
+     "title": "하늘 높이 솟은 종탑",
+     "text": "성당 위쪽을 올려다봐. 가운데와 양옆에 둥근 지붕을 가진 높은 종탑이 있어. 비둘이가 좋아하는 이 종탑은 커다란 나무보다 훨씬 높단다.",
+     "activity": "surprise",
+     "npc": {
+      "id": "npc2",
+      "name": "종탑 위 하얀 비둘기 비둘",
+      "pose": "wave"
+     }
+    },
+    {
+     "title": "흙과 돌의 변신",
+     "text": "이 벽돌에는 재미있는 비밀이 숨어 있어. 옛날 전주 성벽의 흙을 구워서 단단한 벽돌로 만들었대. 성벽에 있던 커다란 돌은 성당을 받치는 튼튼한 주춧돌이 되었어.",
+     "activity": "think",
+     "cut": "closeup",
+     "props": [
+      "brick",
+      "stone"
+     ]
+    },
+    {
+     "title": "무지개처럼 둥근 천장",
+     "text": "성당 안의 천장은 둥근 무지개 모양으로 되어 있어. 양옆의 길 위 천장은 둥근 모양이 서로 엇갈려 있단다. 옛날 사람들이 스물세 해 동안 정성껏 지은 건물이야.",
+     "activity": "walk"
+    },
+    {
+     "title": "닮은꼴 성당 친구",
+     "text": "전동성당은 우리나라에서 손꼽히게 아름다운 건물이야. 서울에 있는 명동성당을 그린 분이 이 성당도 똑같이 그렸대. 그래서 두 성당은 쌍둥이처럼 겉모습이 서로 닮았단다.",
+     "activity": "photo",
+     "props": [
+      "camera"
+     ],
+     "npc": {
+      "id": "npc2",
+      "name": "종탑 위 하얀 비둘기 비둘",
+      "pose": "surprise"
+     }
+    },
+    {
+     "title": "눈으로만 살펴봐요",
+     "text": "오래전부터 소중하게 지켜온 아름다운 성당이야. 엄마 아빠 손을 꼭 잡고 천천히 걸어 다니기로 약속해. 벽돌이나 돌에 올라가지 않고 눈으로만 예쁘게 담아 보자.",
+     "activity": "listen",
+     "cut": "closeup",
+     "npc": {
+      "id": "npc2",
+      "name": "종탑 위 하얀 비둘기 비둘",
+      "pose": "point"
+     }
+    },
+    {
+     "title": "두 번째 빛깔 조각",
+     "text": "비둘이가 고맙다며 붉은 벽돌 빛깔 조각을 선물로 주었어. 무지개 연꽃 등불을 만들 두 번째 조각을 찾았네. 이제 마지막 빛깔 조각이 기다리는 다음 장소로 출발하자.",
+     "activity": "cheer",
+     "props": [
+      "shard"
+     ],
+     "npc": {
+      "id": "npc2",
+      "name": "종탑 위 하얀 비둘기 비둘",
+      "pose": "cheer"
+     }
+    }
+   ],
+   "journey": {
+    "kidsQuizzes": [
+     {
+      "q": "전동성당의 겉모습은 무슨 색 벽돌로 지었을까? 일 번, 회색과 붉은색 벽돌. 이 번, 노란색과 초록색 과자.",
+      "a": "정답은 일 번! 전동성당은 회색과 붉은색 벽돌을 차곡차곡 쌓아서 아름답게 지었어."
+     },
+     {
+      "q": "성당을 받치는 튼튼한 주춧돌은 어디에서 가져왔을까? 일 번, 바닷속 모래성. 이 번, 풍남문 근처 성벽의 돌.",
+      "a": "정답은 이 번! 옛날 전주 성벽에서 나온 돌로 성당의 튼튼한 주춧돌을 삼았어."
+     },
+     {
+      "q": "전동성당은 서울에 있는 어떤 건물과 겉모습이 비슷할까? 일 번, 명동성당. 이 번, 커다란 관람차.",
+      "a": "정답은 일 번! 명동성당을 설계한 신부님이 함께 설계해서 두 성당은 겉모습이 비슷해."
+     }
+    ],
+    "facts": [
+     "전주 전동성당은 사적으로 조선시대 천주교도의 순교 터에 세워졌다.",
+     "정조 15년(1791)에 최초의 순교자 윤지충(바오로)과 권상연(야고보), 순조 원년(1801)에 호남 첫 사도 유항검(아우구스티노)과 윤지헌(프란치스코) 등이 이곳에서 박해를 받고 처형됐다.",
+     "신유박해(1801년) 때는 이곳에서 유항검과 유관검 형제가 육시형을, 윤지헌, 김유산, 이우집 등이 교수형을 당했다."
+    ],
+    "kidsLookout": "창밖에 붉은 벽돌로 지은 높은 종탑이 보이는지 찾아봐.",
+    "kidsRecall": "전동성당에서 회색과 붉은색 벽돌로 지은 아름다운 모습을 보았지?"
+   },
+   "cuts": [
+    {
+     "id": "main",
+     "look": "A wide view of Jeondong Catholic Cathedral built with red and gray bricks, featuring central and side Byzantine-style bell towers under a bright sky. No people or animals."
+    },
+    {
+     "id": "closeup",
+     "look": "A close-up view of the cathedral's red and gray brick wall and sturdy stone foundation bricks in warm sunlight. No people or animals."
+    }
+   ],
+   "props": [
+    {
+     "id": "brick",
+     "name": "붉은 벽돌",
+     "look": "A single old red and gray clay brick"
+    },
+    {
+     "id": "stone",
+     "name": "주춧돌",
+     "look": "A large sturdy gray foundation stone"
+    },
+    {
+     "id": "camera",
+     "name": "사진기",
+     "look": "A cute toy camera for kids"
+    },
+    {
+     "id": "shard",
+     "name": "붉은 벽돌 빛깔 조각",
+     "look": "A glowing red brick-colored crystal piece shaped like a lotus petal"
+    }
+   ],
+   "mission": {
+    "question": "성당의 가운데와 양옆에 솟아 있는 종탑이 모두 몇 개인지 눈으로 세어 볼까?",
+    "activity": "point"
+   }
+  },
+  {
+   "id": "p3",
+   "name": "덕진공원",
+   "matched": "덕진공원",
+   "address": "전북특별자치도 전주시 덕진구 권삼득로 390",
+   "summary": "전주는 마한시대 이래 호남지방에서 규모가 큰 고을로 그 이름은 마한의 원산성에서 유래했다. 40여 년간 후백제의 수도였으며, 조선시대에는 이성계의 선조가 살았던 고향이라는 이유로 완산유수부로 개칭되기도 했다. 전주에서 볼거리로 강한 인상을 받게 되는 것 중의 하나가 덕진공원에 피는 연꽃이다.",
+   "adult": [
+    "전주는 마한시대 이래 호남지방에서 규모가 큰 고을로 그 이름은 마한의 원산성에서 유래했다. 40여 년간 후백제의 수도였으며, 조선시대에는 이성계의 선조가 살았던 고향이라는 이유로 완산유수부로 개칭되기도 했다. 전주에서 볼거리로 강한 인상을 받게 되는 것 중의 하나가 덕진공원에 피는 연꽃이다.",
+    "그만큼 덕진공원 연못은 전주의 명물이다. 전주 IC에서 시내로 들어가는 팔달로변에 위치한 덕진공원은 고려시대에 형성된 자연 호수가 1978년 4월 시민공원 결정 고시에 의거, 도시공원으로 조성되었고 취향정과 더불어 유서 깊은 곳이다.",
+    "4만 5천 평의 경내에는 남쪽으로 3분의 2를 차지하고 있는 연못과 북쪽의 보트장을 동서로 가로지른 현수교가 그사이를 양분하고 있다. 그윽이 풍기는 연못 중앙으로 아치형 현수교를 거닐면서 한없는 시정에 젖어볼 수 있다."
+   ],
+   "sourceTitle": "한국관광공사 TourAPI",
+   "npc": {
+    "place": "덕진공원",
+    "id": "npc3",
+    "name": "연이",
+    "kind": "연못 위 분홍 개구리",
+    "look": "A cute, chubby light-green frog wearing a big pink lotus petal hat and holding a dewdrop wand.",
+    "gift": "분홍 연꽃잎 등불 틀",
+    "gift_look": "a soft glowing pink lotus-shaped lantern base"
+   },
+   "assets": {
+    "cuts": [
+     "main",
+     "bridge"
+    ],
+    "npc": [
+     "wave",
+     "point",
+     "surprise",
+     "cheer"
+    ],
+    "props": [
+     "lotus",
+     "pavilion",
+     "iris",
+     "frame",
+     "lantern"
+    ]
+   },
+   "kids": [
+    {
+     "title": "반가워 덕진공원",
+     "text": "안녕, 나는 {g}야. 전동성당에 이어 세 번째로 온 곳은 커다란 연못이 있는 덕진공원이야. 연못 위에서 분홍 개구리 연이가 반갑게 인사를 하네.",
+     "activity": "wave",
+     "npc": {
+      "id": "npc3",
+      "name": "연못 위 분홍 개구리 연이",
+      "pose": "wave"
+     }
+    },
+    {
+     "title": "연꽃이 가득한 연못",
+     "text": "이곳은 고려시대부터 있던 아주 넓고 깊은 자연 호수야. 공원 남쪽에는 운동장보다 훨씬 큰 연못에 예쁜 연꽃이 가득 피어난단다. 연이가 연꽃 향기를 맡으며 방긋 웃고 있어.",
+     "activity": "surprise",
+     "props": [
+      "lotus"
+     ],
+     "npc": {
+      "id": "npc3",
+      "name": "연못 위 분홍 개구리 연이",
+      "pose": "point"
+     }
+    },
+    {
+     "title": "무지개 같은 다리",
+     "text": "연못과 북쪽 보트장 사이에는 길게 뻗은 현수교가 있어. 연못 한가운데로 이어진 둥근 아치형 다리를 걸으며 멋진 풍경을 구경할 수 있지. 우리도 다리 위를 천천히 걸어 볼까.",
+     "activity": "walk",
+     "cut": "bridge"
+    },
+    {
+     "title": "옛날 정자와 나무다리",
+     "text": "공원 안에는 취향정이라는 유서 깊은 옛날 정자가 서 있어. 작은 숲 언덕과 정겨운 나무다리인 목교도 만날 수 있단다. 시원하게 물이 쏟아지는 인공폭포 소리도 귀 기울여 들어 봐.",
+     "activity": "listen",
+     "cut": "bridge",
+     "props": [
+      "pavilion"
+     ],
+     "npc": {
+      "id": "npc3",
+      "name": "연못 위 분홍 개구리 연이",
+      "pose": "surprise"
+     }
+    },
+    {
+     "title": "창포늪과 단오 잔치",
+     "text": "연못가에는 길쭉한 풀이 자라는 창포늪도 꾸며져 있어. 옛날부터 단오절 아침에는 이곳 연못물로 머리를 감으며 한 해의 건강을 빌었대. 연이도 창포를 보며 신기해하고 있네.",
+     "activity": "think",
+     "props": [
+      "iris"
+     ],
+     "npc": {
+      "id": "npc3",
+      "name": "연못 위 분홍 개구리 연이",
+      "pose": "point"
+     }
+    },
+    {
+     "title": "오래된 고을 전주",
+     "text": "덕진공원이 있는 전주는 아주 먼 옛날 마한시대부터 규모가 큰 고을이었어. 사십여 년 동안 후백제라는 나라의 수도였고 조선시대에는 완산유수부라고 불리기도 했단다. 정말 오랜 역사를 간직한 멋진 곳이지.",
+     "activity": "read"
+    },
+    {
+     "title": "안전하게 구경해요",
+     "text": "넓은 연못과 다리를 구경할 때는 꼭 보호자 손을 잡고 함께 다녀야 해. 다리 난간이나 정자에 올라가지 않고 눈으로만 예쁘게 보기로 약속하자. 그래야 모두 안전하고 즐겁게 산책할 수 있어.",
+     "activity": "point",
+     "cut": "bridge",
+     "npc": {
+      "id": "npc3",
+      "name": "연못 위 분홍 개구리 연이",
+      "pose": "wave"
+     }
+    },
+    {
+     "title": "무지개 연꽃 등불",
+     "text": "연이가 고마운 마음을 담아 분홍 연꽃잎 등불 틀을 건네주었어. 지금까지 모은 세 가지 빛깔 조각을 틀에 맞추자 아름다운 빛이 퍼져 나가네. 덕진공원 연못 위에 세 가지 빛깔 조각이 합쳐진 무지개 연꽃 등불이 환하게 피어난다.",
+     "activity": "cheer",
+     "props": [
+      "frame",
+      "lantern"
+     ],
+     "npc": {
+      "id": "npc3",
+      "name": "연못 위 분홍 개구리 연이",
+      "pose": "cheer"
+     }
+    }
+   ],
+   "journey": {
+    "kidsQuizzes": [
+     {
+      "q": "덕진공원의 넓은 연못에 가득 피어나는 전주의 명물 꽃은 무엇일까? 일 번, 아름다운 연꽃. 이 번, 노란 바나나꽃.",
+      "a": "정답은 일 번! 덕진공원 연못에는 아름다운 연꽃이 가득 피어나서 전주의 자랑거리로 꼽혀."
+     },
+     {
+      "q": "덕진공원 연못과 북쪽 보트장 사이를 가로지르는 둥근 다리의 이름은 무엇일까? 일 번, 구름 미끄럼틀. 이 번, 아치형 현수교.",
+      "a": "정답은 이 번! 연못 한가운데에는 동서로 길게 이어진 아치형 현수교가 있어서 걸으며 풍경을 볼 수 있어."
+     },
+     {
+      "q": "단오절 아침에 사람들이 한 해의 건강을 빌며 덕진공원 연못물로 한 일은 무엇일까? 일 번, 머리 감기. 이 번, 자동차 세차하기.",
+      "a": "정답은 일 번! 단오절에는 부녀자들이 아침 일찍 연못물로 머리를 감으며 건강을 기원하는 창포물 잔치가 열렸어."
+     }
+    ],
+    "facts": [
+     "전주는 마한시대 이래 호남지방에서 규모가 큰 고을로 그 이름은 마한의 원산성에서 유래했다.",
+     "그만큼 덕진공원 연못은 전주의 명물이다.",
+     "4만 5천 평의 경내에는 남쪽으로 3분의 2를 차지하고 있는 연못과 북쪽의 보트장을 동서로 가로지른 현수교가 그사이를 양분하고 있다."
+    ],
+    "kidsLookout": "창밖에 커다란 연못과 가로지르는 다리가 보이는지 찾아봐.",
+    "kidsRecall": "연못 위에 세 가지 빛깔 조각이 모여 무지개 연꽃 등불이 환하게 피어났지?"
+   },
+   "cuts": [
+    {
+     "id": "main",
+     "look": "A wide panoramic view of Deokjin Park with a vast lotus pond filled with blooming pink lotus flowers, small grassy hills, and an iris marsh under a clear sky."
+    },
+    {
+     "id": "bridge",
+     "look": "A closer view of an arched suspension bridge crossing the middle of the lotus pond, with a traditional Korean pavilion, a wooden bridge, and an artificial waterfall in the background."
+    }
+   ],
+   "props": [
+    {
+     "id": "lotus",
+     "name": "연꽃",
+     "look": "a blooming pink lotus flower on a green pad"
+    },
+    {
+     "id": "pavilion",
+     "name": "전통 정자",
+     "look": "a traditional Korean wooden pavilion with a curved tiled roof"
+    },
+    {
+     "id": "iris",
+     "name": "창포",
+     "look": "tall green sweet flag plants growing by the water"
+    },
+    {
+     "id": "frame",
+     "name": "분홍 연꽃잎 등불 틀",
+     "look": "a glowing pink lotus petal shaped lantern frame"
+    },
+    {
+     "id": "lantern",
+     "name": "무지개 연꽃 등불",
+     "look": "a radiant rainbow colored lotus lantern floating on water"
+    }
+   ],
+   "mission": {
+    "question": "연못 한가운데를 가로지르는 아치형 다리와 옛날 정자를 눈으로 찾아볼까?",
+    "activity": "point"
+   }
+  }
+ ],
+ "started": 1794721261.39657,
+ "seconds": 271.2
+}

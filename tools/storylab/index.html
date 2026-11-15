@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Story Lab</title>
+<style>
+:root{--bg:#F8FAFC;--card:#fff;--ink:#16324F;--muted:#475569;--line:#CBD5E1;--primary:#245AE8;--soft:#E8F0FE;--ok:#1B7F59;--oksoft:#E6F3ED;--warn:#8A4A10;--warnsoft:#FBF0E4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F172A;--card:#1E293B;--ink:#E2E8F0;--muted:#94A3B8;--line:#334155;--primary:#7AA2FF;--soft:#1E3A8A55;--ok:#6EE7B7;--oksoft:#064E3B66;--warn:#FDBA74;--warnsoft:#7C2D1244}}
+:root[data-theme="dark"]{--bg:#0F172A;--card:#1E293B;--ink:#E2E8F0;--muted:#94A3B8;--line:#334155;--primary:#7AA2FF;--soft:#1E3A8A55;--ok:#6EE7B7;--oksoft:#064E3B66;--warn:#FDBA74;--warnsoft:#7C2D1244}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,"Malgun Gothic",sans-serif}
+header{padding:16px 24px;border-bottom:1px solid var(--line)}
+header h1{margin:0;font-size:22px}header p{margin:2px 0 0;color:var(--muted);font-size:14px}
+main{display:grid;grid-template-columns:320px minmax(0,1fr);gap:16px;padding:16px 24px;max-width:1400px}
+@media (max-width:900px){main{grid-template-columns:1fr;padding:16px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
+h2{font-size:17px;margin:0 0 8px}h3{font-size:15px;margin:16px 0 6px;color:var(--muted)}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+textarea,select{width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+button{font:inherit;font-weight:700;min-height:44px;padding:8px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.primary{background:var(--primary);border-color:var(--primary);color:#fff;width:100%;margin-top:12px}
+button:disabled{opacity:.5;cursor:default}
+button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.runs button{display:block;width:100%;text-align:left;margin-top:8px;font-weight:400}
+.runs button[aria-current="true"]{border-color:var(--primary);background:var(--soft)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--soft);color:var(--primary)}
+.pill.ok{background:var(--oksoft);color:var(--ok)}.pill.warn{background:var(--warnsoft);color:var(--warn)}
+.small{font-size:13px;color:var(--muted)}
+.log{max-height:180px;overflow:auto;font-size:13px;margin:0;padding:0;list-style:none}
+.log li{display:flex;gap:10px;padding:2px 0}.log time{color:var(--muted);min-width:52px;text-align:right}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tabs button[aria-selected="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+.book{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+@media (max-width:1100px){.book{grid-template-columns:1fr}}
+.stage{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--soft)}
+.stage img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stage img.npc{position:absolute;left:2%;bottom:1%;width:22%}
+.stage img.guide{position:absolute;right:2%;bottom:1%;width:26%}
+.stage .props{position:absolute;right:2%;top:3%;display:flex;gap:4px}.stage .props img{width:72px;height:72px}
+.stage .empty{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:14px;padding:16px;text-align:center}
+.pagetitle{color:var(--primary);font-weight:700;font-size:18px;margin:12px 0 4px}
+.pagetext{font-size:19px;margin:0;min-height:5.2em}
+.pager{display:flex;gap:8px;align-items:center;margin-top:12px}.pager span{flex:1;text-align:center;color:var(--muted)}
+dl{margin:0}dt{font-size:13px;color:var(--muted);margin-top:10px}dd{margin:2px 0 0}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px}.thumbs figure{margin:0;text-align:center;font-size:12px;color:var(--muted)}
+.thumbs img{height:84px;border-radius:8px;background:#22386e;display:block}
+.notes{margin:0;padding-left:18px;font-size:14px}.notes b{font-weight:700}
+</style>
+</head>
+<body>
+<header><h1>Story Lab</h1><p>키즈 안내 콘텐츠 생성 검토 · 이 PC에서만 열리는 화면</p></header>
+<main>
+<div>
+  <section class="card">
+    <h2>새로 만들기</h2>
+    <label for="route">여행 장소 (한 줄에 한 곳, 순서대로 · 최대 5곳)</label>
+    <textarea id="route">경기전
+전동성당
+덕진공원</textarea>
+    <label for="purpose">목적 (고르지 않으면 알아서)</label><select id="purpose"></select>
+    <label for="age">아이 나이대 (고르지 않으면 5~7세)</label><select id="age"></select>
+    <label><input type="checkbox" id="images" checked> 그림까지 만들기 (장소당 약 2~3분)</label>
+    <button class="primary" id="start">생성 시작</button>
+    <p class="small" id="formNote">이야기 틀, 친구(NPC), 소품, 쪽 배치는 입력받지 않고 생성기가 정해요.</p>
+  </section>
+  <section class="card runs"><h2>생성 기록</h2><div id="runs"></div></section>
+</div>
+<div id="detail"><section class="card"><p class="small">왼쪽에서 생성 기록을 고르거나 새로 만들어 주세요.</p></section></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const el = (tag, text, cls) => { const n = document.createElement(tag); if (text != null) n.textContent = text; if (cls) n.className = cls; return n; };
+const api = (path, body) => fetch(path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : undefined).then(async r => { const j = await r.json(); if (!r.ok) throw new Error(j.error || r.status); return j; });
+const GUIDE = '보리';
+let current = '', placeIndex = 0, pageIndex = 0, timer = 0, lastJson = '';
+
+async function init() {
+  const o = await api('/api/options');
+  for (const [k, v] of Object.entries(o.purposes)) $('purpose').append(new Option(k === 'auto' ? '알아서 · ' + v : v, k));
+  for (const [k, v] of Object.entries(o.ages)) $('age').append(new Option(k === 'auto' ? '알아서 · ' + v : v, k));
+  await loadRuns();
+}
+async function loadRuns() {
+  const runs = await api('/api/runs');
+  const box = $('runs'); box.replaceChildren();
+  if (!runs.length) box.append(el('p', '아직 없어요.', 'small'));
+  runs.forEach(r => {
+    const b = el('button', r.route.join(' → '));
+    b.append(el('br'), el('span', (r.status === 'done' ? '완료' : r.status === 'running' ? '생성 중' : '중단') + ' · ' + r.places + '곳' + (r.seconds ? ' · ' + Math.round(r.seconds) + '초' : ''), 'small'));
+    b.setAttribute('aria-current', r.id === current);
+    b.onclick = () => open(r.id);
+    box.append(b);
+  });
+  if (!current && runs.length) open(runs[0].id);
+}
+function open(id) { current = id; placeIndex = 0; pageIndex = 0; lastJson = ''; clearTimeout(timer); refresh(); loadRuns(); }
+async function refresh() {
+  if (!current) return;
+  const text = await fetch('/api/run/' + current).then(r => r.text());
+  if (text !== lastJson) { lastJson = text; render(JSON.parse(text)); }
+  clearTimeout(timer);
+  if (JSON.parse(text).status === 'running') timer = setTimeout(refresh, 3000); else loadRuns();
+}
+function render(run) {
+  const root = $('detail'); root.replaceChildren();
+  const head = el('section', null, 'card');
+  const title = el('h2', run.route.join(' → ') + '  ');
+  title.append(el('span', run.status === 'done' ? '완료' : run.status === 'running' ? '생성 중…' : '중단', 'pill ' + (run.status === 'done' ? 'ok' : run.status === 'failed' ? 'warn' : '')));
+  head.append(title, el('p', '글 ' + run.models.text + ' · 그림 ' + run.models.image + (run.seconds ? ' · 전체 ' + Math.round(run.seconds) + '초' : ''), 'small'));
+  if (run.error) head.append(el('p', run.error, 'small'));
+  const log = el('ul', null, 'log');
+  run.log.forEach(l => { const li = el('li'); li.append(el('time', l.t + '초'), el('span', l.m)); log.append(li); });
+  head.append(el('h3', '진행 기록'), log);
+  root.append(head); log.scrollTop = log.scrollHeight;
+
+  if (run.trip) {
+    const t = el('section', null, 'card');
+    t.append(el('h2', '여행 이야기 틀 · ' + run.trip.title), el('span', run.trip.frame, 'pill'));
+    const dl = el('dl');
+    [['목표', run.trip.goal], ['끝맺음', run.trip.finale]].forEach(([k, v]) => dl.append(el('dt', k), el('dd', v.replaceAll('{g}', GUIDE))));
+    run.trip.cast.forEach(c => dl.append(el('dt', c.place + '의 친구'), el('dd', c.kind + ' ' + c.name + ' · 건네는 것: ' + c.gift)));
+    t.append(dl); root.append(t);
+  }
+  if (run.places.length) {
+    placeIndex = Math.min(placeIndex, run.places.length - 1);
+    const p = run.places[placeIndex];
+    const card = el('section', null, 'card');
+    const tabs = el('div', null, 'tabs'); tabs.setAttribute('role', 'tablist');
+    run.places.forEach((x, i) => { const b = el('button', (i + 1) + '. ' + x.name); b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', i === placeIndex); b.onclick = () => { placeIndex = i; pageIndex = 0; render(run); }; tabs.append(b); });
+    card.append(tabs);
+    if (p.matched && p.matched !== p.name) card.append(el('p', '관광공사 자료: ' + p.matched, 'small'));
+    pageIndex = Math.min(pageIndex, p.kids.length - 1);
+    const page = p.kids[pageIndex], base = '/out/' + run.id + '/' + p.id + '/';
+    const book = el('div', null, 'book'), left = el('div'), right = el('div');
+    const stage = el('div', null, 'stage');
+    const cut = page.cut && p.assets.cuts.includes(page.cut) ? page.cut : p.assets.cuts.includes('main') ? 'main' : '';
+    if (cut) { const bg = el('img', null, 'bg'); bg.src = base + 'cut-' + cut + '.jpg'; bg.alt = p.name + ' 배경 ' + cut; stage.append(bg); }
+    else stage.append(el('div', run.images ? '배경 그림을 아직 만들지 않았어요.' : '그림 없이 만든 기록이에요.', 'empty'));
+    if (page.npc && p.assets.npc.includes(page.npc.pose)) { const n = el('img', null, 'npc'); n.src = base + 'npc/' + page.npc.pose + '.png'; n.alt = page.npc.name; stage.append(n); }
+    const g = el('img', null, 'guide'); g.src = '/sprites/dog/' + page.activity + '.png'; g.alt = '길잡이 ' + GUIDE; stage.append(g);
+    const props = el('div', null, 'props');
+    (page.props || []).filter(x => p.assets.props.includes(x)).forEach(x => { const i = el('img'); i.src = base + 'props/' + x + '.png'; i.alt = (p.props.find(q => q.id === x) || {}).name || x; props.append(i); });
+    stage.append(props);
+    left.append(stage, el('p', (pageIndex + 1) + ' / ' + p.kids.length + '  ' + page.title.replaceAll('{g}', GUIDE), 'pagetitle'), el('p', page.text.replaceAll('{g}', GUIDE), 'pagetext'));
+    const pager = el('div', null, 'pager'), prev = el('button', '◀ 이전'), next = el('button', '다음 ▶');
+    prev.disabled = pageIndex === 0; next.disabled = pageIndex === p.kids.length - 1;
+    prev.onclick = () => { pageIndex--; render(run); }; next.onclick = () => { pageIndex++; render(run); };
+    pager.append(prev, el('span', '배경 ' + (page.cut || 'main') + (page.npc ? ' · 친구 ' + page.npc.pose : '') + (page.props ? ' · 소품 ' + page.props.join(', ') : '')), next);
+    left.append(pager);
+
+    const dl = el('dl');
+    dl.append(el('dt', '친구'), el('dd', p.npc.kind + ' ' + p.npc.name + ' — 건네는 것: ' + p.npc.gift));
+    (p.journey.kidsQuizzes || []).forEach((q, i) => dl.append(el('dt', '가는 길 퀴즈 ' + (i + 1)), el('dd', q.q + '  →  ' + q.a)));
+    [['창밖 힌트', p.journey.kidsLookout], ['회상', p.journey.kidsRecall], ['도착 미션', p.mission && p.mission.question]].forEach(([k, v]) => dl.append(el('dt', k), el('dd', v || '(없음)')));
+    (p.journey.facts || []).forEach((f, i) => dl.append(el('dt', '일반 안내용 사실 ' + (i + 1) + ' · 소개문에서 발췌'), el('dd', f)));
+    right.append(dl);
+    const thumbs = el('div', null, 'thumbs');
+    const add = (src, label) => { const f = el('figure'), i = el('img'); i.src = src; i.alt = label; f.append(i, el('figcaption', label)); thumbs.append(f); };
+    p.assets.cuts.forEach(c => add(base + 'cut-' + c + '.jpg', '배경 ' + c));
+    p.assets.npc.forEach(c => add(base + 'npc/' + c + '.png', p.npc.name + ' ' + c));
+    p.assets.props.forEach(c => add(base + 'props/' + c + '.png', (p.props.find(q => q.id === c) || {}).name || c));
+    right.append(el('h3', '만든 그림 ' + thumbs.children.length + '개'), thumbs);
+    book.append(left, right); card.append(book); root.append(card);
+  }
+  const notes = el('section', null, 'card');
+  notes.append(el('h2', '검증 메모 ' + run.notes.length + '건'), el('p', '규격에 맞지 않아 버리거나 고친 항목, 건너뛴 장소예요.', 'small'));
+  const ul = el('ul', null, 'notes');
+  run.notes.forEach(n => { const li = el('li'); li.append(el('b', n.where + ' · '), el('span', n.m)); ul.append(li); });
+  if (!run.notes.length) ul.append(el('li', '없음'));
+  notes.append(ul); root.append(notes);
+}
+$('start').onclick = async () => {
+  $('start').disabled = true; $('formNote').textContent = '시작하는 중…';
+  try {
+    const r = await api('/api/run', { route: $('route').value.split('\n'), purpose: $('purpose').value, age: $('age').value, images: $('images').checked });
+    $('formNote').textContent = '생성을 시작했어요. 오른쪽에서 진행 상황을 볼 수 있어요.'; open(r.id);
+  } catch (e) { $('formNote').textContent = e.message; }
+  $('start').disabled = false;
+};
+init();
+</script>
+</body>
+</html>
